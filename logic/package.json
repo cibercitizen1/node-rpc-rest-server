@@ -1,0 +1,8 @@
+{
+	"name": "prueba",
+	"description": "2018-19",
+	"version": "0.0.1",
+	"dependencies": {
+		"sqlite3": "*"
+	}
+}

@@ -1,0 +1,192 @@
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
+<!doctype html>
+
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
+<html lang="es">
+  <!-- ----------------------------------------------------- -->
+  <!-- ----------------------------------------------------- -->
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="/bootstrapThings/assets/img/favicon-16x16.ico">
+
+    <title>Signin Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS  -->
+    <link href="/bootstrapThings/dist/css/bootstrap.min.css"
+		  rel="stylesheet">
+
+    <!-- Custom styles for this template  -->
+    <link href="signin.css" rel="stylesheet">
+
+    <!-- using a little ajax -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- my scripts -->
+	<script>
+	$(document).ready(function(){
+
+		alert (" document starts" )
+
+	}) // ready
+	</script>
+
+    <!-- my scripts -->
+	<script>
+	//..........................................................
+	//..........................................................
+	function doLoginByProgram () {
+		console.log( "gonna send GET /login" )
+		try  {
+			$.get( // jQuery.ajax ( method: "get",
+				{
+					url: "https://localhost:8080/login?" 
+						+ "user=" + $("#userField").val()
+						+ "&password=" + $("#passwordField").val(),
+					xhrFields: {  withCredentials: true }, //  let the browser manage cookies
+					crossDomain: true, // accept CORS
+					success: function(result, code, response){
+						
+						alert ( " GET /login response=" + JSON.stringify(code))
+						console.log( "GET /login response: " + JSON.stringify(code))
+						
+						// cookie field "Set-Cookie:" may not be read here
+						//    but    other     fields    can:    alert (response.getResponseHeader('X-whatevewhatever'))
+					}, // success
+					error: function( err ) {
+						console.log(   "error:   "  +
+									   JSON.stringify(err) )
+					}
+				}
+			) // $.get
+			
+		} catch (err) {
+		} finally {
+			// have been called by the submit button in the form:
+			// return false to stop the submit and send
+			// more things to server
+			return false
+		} 
+	} // doLoginByProgram ()
+	</script>
+	
+    <!-- my scripts -->
+	<script>
+	//..........................................................
+	//..........................................................
+	function doPOSTTest () {
+		try  {
+			
+			jQuery.ajax (
+				{
+					method: "post",
+					url: "https://localhost:8080/test", 
+					xhrFields: { withCredentials: true },
+					crossDomain: true,
+					body: "hello world",
+					success: function(result, code, response){
+						alert ( " POST /probar response=" + JSON.stringify(code))
+						console.log( "POST /probar: success " )
+					}, // success
+					error: function( err ) {
+						console.log(   "error:   "  + JSON.stringify(err) )
+					}
+				}
+			) 
+			
+		} catch (err) {
+			console.log( err )
+		}
+		
+	}
+	</script>
+
+  </head>
+  
+  <!-- ----------------------------------------------------- -->
+  <!-- ----------------------------------------------------- -->
+  <body>
+
+	<!-- ................................................... -->
+	<!-- ................................................... -->
+    <div class="container">
+
+	  <!-- ................................................. -->
+	  <!-- ................................................. -->
+      <form id="loginForm"
+			class="form-signin"
+			onsubmit="return doLoginByProgram()"
+			>
+
+		<!-- 
+		----
+		--->
+        <h2 class="form-signin-heading">Sign in please</h2>
+
+		<!-- 
+		----
+		--->
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email"
+			   id="userField" 
+			   name="user" 
+			   class="form-control"
+			   placeholder="Email address" required autofocus />
+
+		<!-- 
+		----
+		--->
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password"
+			   id="passwordField"
+			   name="password"
+			   class="form-control"
+			   placeholder="Password" required />
+
+		<!-- 
+		----
+		--->
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+				
+		<!-- 
+		----
+		--->
+		<button class="btn btn-lg btn-primary btn-block"
+				type="submit" 
+				>
+		  Sign in 
+		</button>
+
+      </form>
+
+    </div> <!-- /container  -->
+
+	<!--- 
+	  ---
+	  --->
+	<button class="btn" onclick="doPOSTTest()" >
+	  POST /test
+	</button>
+	
+  </body>
+  <!-- ----------------------------------------------------- -->
+  <!-- ----------------------------------------------------- -->
+
+</html>
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
+

@@ -1,0 +1,16 @@
+{
+	"name": "NodeRestRPCServer",
+	"description": "2019-20",
+	"version": "0.0.1",
+	"scripts": {
+		"test": "node ./node_modules/mocha/bin/mocha",
+		"start": "node mainServer.js 8080 ../logic/logic.js ../db/data.db"
+	},
+	"dependencies": {
+		"express": "*",
+		"express-session": "*",
+		"request": "*",
+		"mocha": "*",
+		"jwt-simple": "*"
+	}
+}
