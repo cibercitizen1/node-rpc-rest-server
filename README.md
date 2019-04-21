@@ -1,7 +1,11 @@
 # node-rpc-rest-server
 
 Easily  and  automatically  expose  any exported  function  in  module
-logic/logic.js  to be  called through  a POST  request.  They  must be
+logic/logic.js  to be  called through  a POST  request.
+This is, if `f1()` is in `logic.js` then, it can be called
+sending a `POST /f1`.
+
+Logic functions must be
 "promisified" JavaScripts functions, so to use async-await.
 
 You should only have to adapt `logic/logic.js` and
@@ -23,8 +27,8 @@ The service can be used with http or https.
 
 ## Login
 
-It is assumed that a GET /login?user=...&password=,...
-is performed before the rest of (POST) functions may be called.
+It is assumed that a `GET /login?user=...&password=,...`
+is issued before the rest of (POST) functions may be called.
 
 Therefore, logic.js must also provide
 - a `checkLogin()` function
